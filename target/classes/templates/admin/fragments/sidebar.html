@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+  <aside th:fragment="sidebar" id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme"
+    style="height: 100%">
+
+    <div class="text-center">
+      <a href="/admin">
+        <img th:src="@{/admin/assets/img/wingtoflyaway/WingsToFlyAway100x100.png}">
+      </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+
+
+    <ul class="menu-inner py-1">
+      <li class="menu-item">
+        <a href="/" class="menu-link">
+          <i class="menu-icon tf-icons bx bxl-shopify"></i>
+          <div data-i18n="Analytics">Go to your shop</div>
+        </a>
+      </li>
+      <!-- Dashboard -->
+      <li class="menu-item">
+        <a href="/admin" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-home-circle"></i>
+
+          <div data-i18n="Analytics">Dashboard</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="/admin/quanlysanpham" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-crown"></i>
+          <div data-i18n="Boxicons">Quản lý sản phẩm</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="/admin/quanlytaikhoan" class="menu-link">
+          <i class='menu-icon tf-icons bx bxs-user-account'></i>
+          <div>Quản lý tài khoản</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="/admin/quanlyhoadon" class="menu-link">
+          <i class='menu-icon tf-icons bx bx-receipt'></i>
+          <div>Quản lý hóa đơn</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="/admin/quanlydanhmuc" class="menu-link">
+          <i class='menu-icon tf-icons bx bx-category'></i>
+          <div>Quản lý danh mục</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="/admin/quanlydanhmuccon" class="menu-link">
+          <i class='menu-icon tf-icons bx bx-category'></i>
+          <div>Quản lý danh mục con</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="/admin/quanlynhacungcap" class="menu-link">
+          <i class='menu-icon tf-icons bx bxs-flag'></i>
+          <div>Quản lý nhà cung cấp</div>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a href="/admin/quanlySizeColor" class="menu-link">
+          <i class='menu-icon tf-icons bx bxs-color-fill'></i>
+          <div>Quản lý size, color</div>
+        </a>
+      </li>
+
+      <li class="menu-item" style="display:none;">
+        <a href="/admin/quanlydanhgia" class="menu-link">
+          <i class='menu-icon tf-icons bx bx-chat'></i>
+          <div>Quản lý đánh giá</div>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a th:href="@{/logout}" class="menu-link">
+          <i class='menu-icon tf-icons bx bx-chat'></i>
+          <div>Đăng xuất</div>
+        </a>
+      </li>
+      <!-- Layouts -->
+    </ul>
+  </aside>
+</body>

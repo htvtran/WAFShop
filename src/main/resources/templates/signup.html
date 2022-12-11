@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="en-US">
+
+<head>
+<meta charset="UTF-8">
+<!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Groover - Online Shopping for Electronics, Apparel,
+	Computers, Books, DVDs & more</title>
+<!-- Standard Favicon -->
+<link href="favicon.ico" rel="shortcut icon">
+<!-- Base Google Font for Web-app -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+	rel="stylesheet">
+<!-- Google Fonts for Banners only -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,800"
+	rel="stylesheet">
+<!-- Bootstrap 4 -->
+<!--     <title>Groover - Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more</title> -->
+<!-- Standard Favicon -->
+<link href="favicon.ico" rel="shortcut icon">
+<!-- Base Google Font for Web-app -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700"
+	rel="stylesheet">
+<!-- Google Fonts for Banners only -->
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,800"
+	rel="stylesheet">
+<!-- Bootstrap 4 -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!-- Font Awesome 5 -->
+<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+<!-- Ion-Icons 4 -->
+<link rel="stylesheet" th:href="@{/css/ionicons.min.css}">
+<!-- Animate CSS -->
+<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+<!-- Owl-Carousel -->
+<link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+<!-- Jquery-Ui-Range-Slider -->
+<link rel="stylesheet" th:href="@{/css/jquery-ui-range-slider.min.css}">
+<!-- Utility -->
+<link rel="stylesheet" th:href="@{/css/utility.css}">
+<!-- Main -->
+<link rel="stylesheet" th:href="@{/css/bundle.css}">
+<style type="text/css">
+.error {
+	color: #cc0033;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	font-style: italic;
+	line-height: 20px;
+	text-shadow: 1px 1px rgba(250, 250, 250, .3);
+}
+</style>
+</head>
+
+<body>
+
+	<!-- app -->
+	<div id="app">
+		<!-- Header -->
+		<header th:insert="fragments/header :: header"></header>
+		<!-- Header /- -->
+		<!-- Page Introduction Wrapper -->
+		<div class="page-style-a">
+			<div class="container">
+				<div class="page-intro">
+					<h2>Sign up</h2>
+					<ul class="bread-crumb">
+						<li class="has-separator"><i class="ion ion-md-home"></i> <a
+							href="home.html">Home</a></li>
+						<li class="is-marked"><a href="account.html">Sign up</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- Page Introduction Wrapper /- -->
+		<!-- Account-Page -->
+		<div class="page-account u-s-p-t-80">
+			<div class="container">
+				<div class="row">
+					<!-- Login -->
+					<div class="col-lg-6 border-right">
+						<img class="img-fluid w-100"
+							th:src="@{/images/background/signup.jpg}" alt="" />
+					</div>
+					<!-- Login /- -->
+					<!-- Register -->
+					<div class="col-lg-6">
+						<div class="reg-wrapper">
+							<h2 class="account-h2 u-s-m-b-20">
+								<b>Sign up</b>
+							</h2>
+							<h6 class="account-h6 u-s-m-b-30">Registering for this site
+								allows you to access your order status and history.</h6>
+							<!--  ##############################################################-->
+							<form action="/signup" th:action="@{/signup}" th:object="${user}"
+								method="post">
+								<div class="u-s-m-b-30">
+									<label for="user-name">Username <span class="astk">*</span>
+									</label> <input type="text" th:field="*{name}"
+										th:errorClass="is-invalid" id="user-name" class="text-field"
+										placeholder="Username">
+									<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+										class="error"></div>
+								</div>
+								<div class="u-s-m-b-30">
+									<label for="email">Email <span class="astk">*</span>
+									</label> <input type="text" th:field="*{email}"
+										th:errorClass="is-invalid" id="email" name="email"
+										class="text-field" placeholder="Email">
+									<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+										class="error"></div>
+								</div>
+								<div class="u-s-m-b-30">
+									<label for="password">Password <span class="astk">*</span>
+									</label> <input type="password" th:field="*{passwords}"
+										th:errorClass="is-invalid" id="password" name="password"
+										class="text-field" placeholder="Password">
+									<div th:if="${#fields.hasErrors('passwords')}"
+										th:errors="*{passwords}" class="error"></div>
+								</div>
+								<div class="u-s-m-b-30 d-none">
+									</label> <input type="text" th:field="*{address}"
+										th:value="'Banchuanhap'" th:errorClass="is-invalid"
+										name="address" class="text-field d-none"
+										placeholder="Password">
+								</div>
+								<div class="u-s-m-b-30 d-none">
+									</label> <input type="date" th:field="*{dob}" th:value="'2022-01-01'"
+										th:errorClass="is-invalid" name="address"
+										class="text-field d-none" placeholder="Password">
+								</div>
+								<div class="u-s-m-b-30">
+									<input type="checkbox" class="check-box" id="accept"> <label
+										class="label-text no-color" for="accept">I’ve read and
+										accept the <a href="terms-and-conditions.html"
+										class="u-c-brand">terms & conditions</a>
+									</label>
+								</div>
+								<div class="u-s-m-b-45">
+									<!-- <button type="submit" id="submit" th:attr="onclick=|messageSignup('${me}')|" name="submit" class="button button-primary w-100">Register</button> -->
+									<button type="submit" id="submit" name="submit"
+										class="button button-primary w-100">Register</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- Register /- -->
+				</div>
+			</div>
+		</div>
+		<!-- Account-Page /- -->
+		<!-- Footer -->
+
+		<div th:insert="fragments/footer :: footer"></div>
+
+		<!-- Footer /- -->
+		<!-- Dummy Selectbox -->
+		<div class="select-dummy-wrapper">
+			<select id="compute-select">
+				<option id="compute-option">All</option>
+			</select>
+		</div>
+		<!-- Dummy Selectbox /- -->
+		<!-- Responsive-Search -->
+		<div class="responsive-search-wrapper">
+			<button type="button" class="button ion ion-md-close"
+				id="responsive-search-close-button"></button>
+			<div class="responsive-search-container">
+				<div class="container">
+					<p>Start typing and press Enter to search</p>
+					<form class="responsive-search-form">
+						<label class="sr-only" for="search-text">Search</label> <input
+							id="search-text" type="text" class="responsive-search-field"
+							placeholder="PLEASE SEARCH"> <i class="fas fa-search"></i>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Responsive-Search /- -->
+	</div>
+	<!-- app /- -->
+	<!--[if lte IE 9]>
+<div class="app-issue">
+    <div class="vertical-center">
+        <div class="text-center">
+            <h1>You are using an outdated browser.</h1>
+            <span>This web app is not compatible with following browser. Please upgrade your browser to improve your security and experience.</span>
+        </div>
+    </div>
+</div>
+<style> #app {
+    display: none;
+} </style>
+<![endif]-->
+	<!-- NoScript -->
+	<noscript>
+		<div class="app-issue">
+			<div class="vertical-center">
+				<div class="text-center">
+					<h1>JavaScript is disabled in your browser.</h1>
+					<span>Please enable JavaScript in your browser or upgrade to
+						a JavaScript-capable browser to register for Groover.</span>
+				</div>
+			</div>
+		</div>
+		<style>
+#app {
+	display: none;
+}
+</style>
+	</noscript>
+	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+	<script>
+		window.ga = function() {
+			ga.q.push(arguments)
+		};
+		ga.q = [];
+		ga.l = +new Date;
+		ga('create', 'UA-XXXXX-Y', 'auto');
+		ga('send', 'pageview')
+	</script>
+	<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+	<!-- Modernizr-JS -->
+	<script type="text/javascript"
+		th:src="@{/js/vendor/modernizr-custom.min.js}"></script>
+	<!-- NProgress -->
+	<script type="text/javascript" th:src="@{/js/nprogress.min.js}"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<!-- Bootstrap JS -->
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<!-- Popper -->
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+	<!-- ScrollUp -->
+	<script type="text/javascript" th:src="@{/js/jquery.scrollUp.min.js}"></script>
+	<!-- Elevate Zoom -->
+	<script type="text/javascript"
+		th:src="@{/js/jquery.elevatezoom.min.js}"></script>
+	<!-- jquery-ui-range-slider -->
+	<script type="text/javascript"
+		th:src="@{/js/jquery-ui.range-slider.min.js}"></script>
+	<!-- jQuery Slim-Scroll -->
+	<script type="text/javascript" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+	<!-- jQuery Resize-Select -->
+	<script type="text/javascript"
+		th:src="@{/js/jquery.resize-select.min.js}"></script>
+	<!-- jQuery Custom Mega Menu -->
+	<script type="text/javascript"
+		th:src="@{/js/jquery.custom-megamenu.min.js}"></script>
+	<!-- jQuery Countdown -->
+	<script type="text/javascript"
+		th:src="@{/js/jquery.custom-countdown.min.js}"></script>
+	<!-- Owl Carousel -->
+	<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+	<!-- Main -->
+	<script type="text/javascript" th:src="@{/js/app.js}"></script>
+	<th:block th:insert="fragments/auths :: auths"></th:block>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- 	<script type="text/javascript">
+		function messageSignup(e) {
+			Swal.fire({
+				icon : 'success',
+				title : e,
+				showConfirmButton : false,
+				timer : 1500
+			})
+		};
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function () {
+		  fetch(`/signup`,
+		    { method: 'POST' }
+		  ).then(res => {
+			if(res.status==200) {
+			    	return Swal.fire({
+						icon : 'success',
+						title : "Đăng ký thành công",
+						showConfirmButton : false,
+						timer : 1500
+					});
+			    }
+			else if (res.status == 400) {
+		      return Swal.fire({
+					icon : 'success',
+					title : "Lỗi : Đăng ký thất bại",
+					showConfirmButton : false,
+					timer : 1500
+				});
+		    }
+			else{
+				return null;
+			}
+		    
+		  }).then(
+		    data => {
+		    }
+		  )
+		});
+	</script> -->
+</body>
+</html>

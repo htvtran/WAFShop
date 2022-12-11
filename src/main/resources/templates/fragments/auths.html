@@ -1,0 +1,10 @@
+<th:block th:fragment="auths">
+    <script th:inline="javascript" type="text/javascript">
+        /*<![CDATA[*/
+        var sid = /*[[${#session.id}]]*/ "";
+        var s = /*[[${#authorization.expression('isAnonymous()')}]]*/ "";
+        var cartSize =  /*[[${session.cartSize}]]*/ "";
+        /*]]>*/
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</th:block>

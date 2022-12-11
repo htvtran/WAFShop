@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- <head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head> -->
+
+<body>
+    <!-- <div class="col-lg-3"> -->
+    <div th:fragment="vmenu" class="v-menu v-close">
+        <span class="v-title">
+            <i class="ion ion-md-menu"></i>
+            Danh mục
+            <i class="fas fa-angle-down"></i>
+        </span>
+        <nav>
+            <div class="v-wrapper">
+                <ul class="v-list animated fadeIn">
+
+                    <li th:each="cat : ${session.catList}" class="js-backdrop">
+                        <a th:href="@{/category/{i}(i=${cat.id})}">
+                            <i th:if="${cat.id%2 == 0}" class="ion ion-md-shirt"></i>
+                            <i th:unless="${cat.id%2 == 0}" class="ion ion-md-rocket"></i>
+                            <span th:text="${cat.categoryName}"></span>
+                            <i class="ion ion-ios-arrow-forward"></i>
+                        </a>
+                        <button class="v-button ion ion-md-add"></button>
+                        <div class="v-drop-right" style="width: 700px;">
+                            <div class="row">
+                                <div class="col-lg-4"
+                                    th:each="sc : ${session.subDao.filterSubByPositionWithCat(cat.id)}">
+                                    <ul class="v-level-2">
+                                        <li>
+                                            <a th:href="@{/subcategory?c={c}&po={po}(po=${sc.position}, c=${cat.id})}"
+                                                th:text="${sc.position}"></a>
+                                            <ul>
+                                                <li th:each="key: ${sc.getMap().keySet()}">
+                                                    <!-- <a th:href="@{/category/sub/sub-category?po={po}&si={si}(po=${sc.position},si=${key})}"
+                                                        th:text="${sc.getMap().get(key)}"></a> -->
+                                                    <a th:href="@{/subcategory/sub?si={si}(si=${key})}"
+                                                        th:text="${sc.getMap().get(key)}"></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--  <div class="col-lg-4">
+                                                        <ul class="v-level-2">
+                                                            <li>
+                                                                <a href="shop-v2-sub-category.html">Outwear</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Jackets</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Trench</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Parkas</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Sweaters</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <ul class="v-level-2">
+                                                            <li>
+                                                                <a href="shop-v1-root-category.html">Accessories</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Watches</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Ties</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Scarves</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Belts</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <ul class="v-level-2">
+                                                            <li>
+                                                                <a href="shop-v2-sub-category.html">Bottoms</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Casual Pants
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Shoes</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Jeans</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Shorts</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <ul class="v-level-2">
+                                                            <li>
+                                                                <a href="shop-v2-sub-category.html">Underwear</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Boxers</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Briefs</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Robes</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Socks</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div> -->
+                                <!--     <div class="col-lg-4">
+                                                        <ul class="v-level-2">
+                                                            <li>
+                                                                <a href="shop-v2-sub-category.html">Sunglasses</a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Pilot</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Wayfarer</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Square</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="shop-v3-sub-sub-category.html">Round</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div> -->
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!--        </div> -->
+</body>
+
+</html>

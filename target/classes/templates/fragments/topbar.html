@@ -1,0 +1,63 @@
+<div th:fragment="topbar" class="container clearfix">
+	<nav>
+		<ul class="primary-nav g-nav">
+			<li><a href="tel:+111444989"> <i class="fas fa-phone u-c-brand u-s-m-r-9"></i> Telephone:
+				</a></li>
+			<li><a href="mailto:contact@domain.com"> <i class="fas fa-envelope u-c-brand u-s-m-r-9"></i> E-mail:
+					contact@domain.com
+				</a></li>
+
+		</ul>
+	</nav>
+	<nav>
+		<ul class="secondary-nav g-nav">
+			<li sec:authorize="isAnonymous()">
+				<!-- <i class="fas fa-chevron-down u-s-m-l-9"></i> -->
+				<a th:href="@{/login}">
+					<th:block>
+						<span th:remove="tag"> Signup or Login </span>
+					</th:block>
+					<!-- <i class="fa-solid fa-door-open u-s-m-l-9"></i> -->
+					<i class="fas fa-door-open u-s-m-l-9"></i>
+
+					<!-- <i class="fas fa-door-open u-s-m-l-9"></i> -->
+				</a>
+			</li>
+			<li sec:authorize="isAuthenticated()">
+				<a th:href="@{/profile}">
+					<th:block>
+						<span th:text="${'Hello ' + #authentication.principal.name}" th:remove="tag">
+						</span>
+					</th:block> <i class="fas fa-chevron-down u-s-m-l-9"></i>
+				</a>
+				<ul class="g-dropdown" style="width: 200px">
+					<li>
+						<a th:href="@{/cart}">
+							<i class="fas fa-cog u-s-m-r-9"></i>
+							My Cart
+						</a>
+					</li>
+					<li><a th:href="@{/wishlist.html}"> <i class="far fa-heart u-s-m-r-9"></i> My Wishlist
+						</a></li>
+					<li><a th:href="@{/checkout}"> <i class="far fa-check-circle u-s-m-r-9"></i> Checkout
+						</a></li>
+					<!-- <li><a href="account.html"> <i class="fas fa-sign-in-alt u-s-m-r-9"></i> Login / Signup
+						</a></li> -->
+				</ul>
+			</li>
+
+			<li><a>ENG <i class="fas fa-chevron-down u-s-m-l-9"></i>
+				</a>
+				<ul class="g-dropdown" style="width: 70px">
+					<li><a href="#" class="u-c-brand">ENG</a></li>
+					<li><a href="#">ARB</a></li>
+				</ul>
+			</li>
+			<li sec:authorize="isAuthenticated()">
+				<a href="/logout">Logout</a> <!-- <i class="fas fa-chevron-down u-s-m-l-9"></i>    -->
+			</li>
+		</ul>
+	</nav>
+</div>
+</div>
+<!-- Top-Header /- -->

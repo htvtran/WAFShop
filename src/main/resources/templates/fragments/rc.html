@@ -1,0 +1,76 @@
+<!-- Row-of-Product-Container -->
+<div th:fragment="rc" class="row product-container list-style">
+    <th:block th:each="p : ${products}">
+        <div class="product-item col-lg-4 col-md-6 col-sm-6">
+            <div class="item">
+                <div class="image-container">
+                    <a class="item-img-wrapper-link" th:href="@{/product/detail?id={id}(id=${p.id})}">
+                        <img class="img-fluid" th:src="@{/product/image/{i}(i=${p.image})}"
+                            onerror="this.onerror=null; this.src='/product/image/tshirt06.jpg'" alt="Product">
+                    </a>
+                    <div class="item-action-behaviors">
+                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick
+                            Look</a>
+                        <a class="item-mail" href="javascript:void(0)">Mail</a>
+                        <a class="item-addwishlist" href="javascript:void(0)">Add to
+                            Wishlist</a>
+                        <a class="item-addCart" th:attr="data-prod-id=${p.id}" href="javascript:void(0)"
+                            th:onclick="addCart(this)">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="item-content">
+                    <div class="what-product-is">
+                        <ul class="bread-crumb">
+                            <li class="has-separator">
+                                <a th:href="@{/category/{id}(id=${p.getCatID()})}"
+                                    th:text="${catObj.categoryName}">Men's</a>
+                            </li>
+                            <li class="has-separator">
+                                <a th:href="@{/subcategory?c={c}&po={po}(po=${p.subcat.positions}, c=${p.getCatID()})}"
+                                    th:text="${p.subcat.positions}"></a>
+                            </li>
+                            <li>
+                                <a th:href="@{/subcategory/subcat?sid={i}(i=${p.subcat.id})}"
+                                    th:text="${p.subcat.name}">Hoodies</a>
+                            </li>
+                        </ul>
+                        <h6 class="item-title">
+                            <a th:href="@{/product/detail?id={id}(id=${p.id})}" th:text="${p.name}"></a>
+                        </h6>
+                        <div class="item-description">
+                            <p th:text="${p.description}"> </p>
+                        </div>
+                        <div class="item-stars">
+                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
+                                <span style='width:67px'></span>
+                            </div>
+                            <span>(23)</span>
+                        </div>
+                    </div>
+                    <div class="price-template">
+                        <th:block th:unless="${p.discount == null}">
+                            <div class="item-new-price"
+                                th:text="${session.cformatter.format(p.price - (p.price *(p.discount * 0.01)))}">
+                                $55.00
+                            </div>
+                            <div class="item-old-price" th:text="${session.cformatter.format(p.price)}">
+                            </div>
+                        </th:block>
+                        <th:block th:if="${p.discount == null}">
+                            <div class="item-new-price" th:text="${session.cformatter.format(p.price)}">
+                                $55.00
+                            </div>
+                        </th:block>
+
+                    </div>
+                </div>
+                <div class=" tag new">
+                    <span>NEW</span>
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+
+</div>
+<!-- Row-of-Product-Container /- -->

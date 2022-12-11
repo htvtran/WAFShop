@@ -1,0 +1,35 @@
+<!-- Shop-Pagination -->
+<div th:fragment="pagebar" class="pagination-area">
+    <div class="pagination-number">
+        <ul>
+            <li th:style="${page.page > 0}? 'display: inline-block' : 'display: none'">
+                <a th:href="@{p={i}(i=${page.page -1 })}" title="Previous">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+
+            <li th:each="pn : ${#numbers.sequence(1, page.getPageCount())}"
+                th:classappend="${pn == (page.page + 1)}? active : '' ">
+                <!-- <th:block th:with="currentUrl=(${@currentUrlWithoutParam.apply('p')})">
+                    <a th:href="@{${currentUrl}(p=${page.page + 1})}" th:text="${pn}"></a>
+                </th:block> -->
+                <th:block th:with="pg=(${(pn) + '' })">
+                    <a th:href="${@replaceOrAddParam.apply('p', pg)}" th:text="${pn}">Text</a>
+                </th:block>
+                <!-- <a th:href="@{?page=}"></a> -->
+            </li>
+
+
+            <li>
+                <th:block th:with="pg=(${(page.page + 2) + '' })">
+                    <a th:href="${@replaceOrAddParam.apply('p', pg)}"
+                        th:style="${page.page < page.getPageCount()-1}? 'display: inline-block' : 'display: none'"
+                        title="Next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </th:block>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- Shop-Pagination /- -->

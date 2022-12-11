@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<!--[if IE]>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<th:block th:insert="fragments/title :: title"></th:block>
+	<!-- Standard Favicon -->
+	<link href="favicon.ico" rel="shortcut icon">
+	<!-- Base Google Font for Web-app -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+	<!-- Google Fonts for Banners only -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
+	<!-- Bootstrap 4 -->
+	<!--    <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<!-- Font Awesome 5 -->
+	<!--     <link rel="stylesheet" href="css/fontawesome.min.css"> -->
+	<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+	<!-- Ion-Icons 4 -->
+	<!--     <link rel="stylesheet" href="css/ionicons.min.css"> -->
+	<link rel="stylesheet" th:href="@{/css/ionicons.min.css}">
+	<!-- Animate CSS -->
+	<!--     <link rel="stylesheet" href="css/animate.min.css"> -->
+	<link rel="stylesheet" th:href="@{/css/animate.min.css}">
+	<!-- Owl-Carousel -->
+	<!--   <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
+	<link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+	<!-- Jquery-Ui-Range-Slider -->
+	<!--   <link rel="stylesheet" href="css/jquery-ui-range-slider.min.css"> -->
+	<link rel="stylesheet" th:href="@{/css/jquery-ui-range-slider.min.css}">
+	<!-- Utility -->
+	<!-- <link rel="stylesheet" href="css/utility.css"> -->
+	<link rel="stylesheet" th:href="@{/css/utility.css}">
+	<!-- Main -->
+	<link rel="stylesheet" th:href="@{/css/bundle.css}">
+	<!-- Editprofile -->
+	<link rel="stylesheet" th:href="@{/css/editprofile.css}">
+	<style type="text/css">
+		.error {
+			color: #cc0033;
+			font-family: Helvetica, Arial, sans-serif;
+			font-size: 13px;
+			font-weight: bold;
+			font-style: italic;
+			line-height: 20px;
+			text-shadow: 1px 1px rgba(250, 250, 250, .3);
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<header th:insert="fragments/header :: header"> </header>
+
+		<!-- Page Introduction Wrapper -->
+		<div class="page-style-a">
+			<div class="container">
+				<div class="page-intro">
+					<h2>Editprofile</h2>
+					<ul class="bread-crumb">
+
+						<li class="has-separator"><i class="ion ion-md-home"></i> <a href="home.html">Home</a></li>
+						<li class="is-marked"><a href="editprofile.html">Editprofile</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- personal details start  -->
+		<form action="/account/profile" th:action="@{/account/profile}" th:object="${user}" method="post">
+			<div class="container mt-5">
+				<div class="row gutters">
+					<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+						<div class="card h-100 shadow">
+							<div class="card-body">
+								<div class="account-settings">
+									<div class="user-profile">
+										<div class="user-avatar">
+											<img class="border-waring"
+												src="https://bootdey.com/img/Content/avatar/avatar7.png"
+												alt="Maxwell Admin">
+										</div>
+										<h5 class="user-name" sec:authentication="name"></h5>
+										<div class="input-group">
+											<input type="file" class="form-control" id="inputGroupFile04"
+												aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+										</div>
+									</div>
+									<div class="about">
+										<h5>About</h5>
+
+										<p sec:authorize="hasRole('ADMIN')">This content is Đây là
+											ADMIN</p>
+
+										<p sec:authorize="hasRole('USER')">Đây là USER</p>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
+						<div class="card h-100 shadow">
+							<div class="card-body">
+								<div class="row gutters">
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+										<h6 class="mb-2 text-primary">Personal Details</h6>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="fullName">Full Name</label> <input type="text"
+												th:field="*{name}" name="name" th:value="*{name}"
+												th:errorClass="is-invalid" class="form-control" id="fullName"
+												placeholder="Enter full name">
+											<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="gender">Gender</label> <select id="gender" th:field="*{gender}"
+												name="gender" class="form-control">
+												<option th:value="false" th:selected="${user.gender}" th:text="Male">
+												</option>
+												<option th:value="true" th:selected="!${user.gender}" th:text="Female">
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="birth">Birth</label> <input type="date" th:field="*{dob}"
+												class="form-control" id="birth" placeholder="Enter full name">
+											<div th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" class="error">
+											</div>
+										</div>
+
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="phone">Phone</label> <input type="text" th:field="*{phone}"
+												class="form-control" id="phone" placeholder="Enter phone number">
+											<div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+												class="error"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row gutters">
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+										<h6 class="mt-3 mb-2 text-primary">Address</h6>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="address">Address</label> <input type="text"
+												th:field="*{address}" class="form-control" id="address"
+												placeholder="Enter address ID">
+											<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+												class="error"></div>
+										</div>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="eMail">Email</label> <input type="text" th:field="*{email}"
+												class="form-control" id="eMail" placeholder="Enter email ID">
+											<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+												class="error"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row gutters">
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+										<div class="text-right">
+											<button type="submit" id="submit" name="submit" class="btn btn-secondary"
+												th:formaction="@{/account/cancel}">Cancel</button>
+											<button type="submit" id="submit" name="submit"
+												class="btn btn-primary">Update</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<!-- personal details end  -->
+		<!-- footer start  -->
+		<div th:insert="fragments/footer :: footer"></div>
+		<!-- footer end  -->
+	</div>
+
+	<noscript>
+		<div class="app-issue">
+			<div class="vertical-center">
+				<div class="text-center">
+					<h1>JavaScript is disabled in your browser.</h1>
+					<span>Please enable JavaScript in your browser or upgrade to
+						a JavaScript-capable browser to register for Groover.</span>
+				</div>
+			</div>
+		</div>
+		<style>
+			#app {
+				display: none;
+			}
+		</style>
+	</noscript>
+	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+	<script>
+		window.ga = function () {
+			ga.q.push(arguments)
+		};
+		ga.q = [];
+		ga.l = +new Date;
+		ga('create', 'UA-XXXXX-Y', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+	<!-- Modernizr-JS -->
+	<script type="text/javascript" th:src="@{/js/vendor/modernizr-custom.min.js}"></script>
+	<!-- NProgress -->
+	<script type="text/javascript" th:src="@{/js/nprogress.min.js}"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<!-- Bootstrap JS -->
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<!-- Popper -->
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+	<!-- ScrollUp -->
+	<script type="text/javascript" th:src="@{/js/jquery.scrollUp.min.js}"></script>
+	<!-- Elevate Zoom -->
+	<script type="text/javascript" th:src="@{/js/jquery.elevatezoom.min.js}"></script>
+	<!-- jquery-ui-range-slider -->
+	<script type="text/javascript" th:src="@{/js/jquery-ui.range-slider.min.js}"></script>
+	<!-- jQuery Slim-Scroll -->
+	<script type="text/javascript" th:src="@{/js/jquery.slimscroll.min.js}"></script>
+	<!-- jQuery Resize-Select -->
+	<script type="text/javascript" th:src="@{/js/jquery.resize-select.min.js}"></script>
+	<!-- jQuery Custom Mega Menu -->
+	<script type="text/javascript" th:src="@{/js/jquery.custom-megamenu.min.js}"></script>
+	<!-- jQuery Countdown -->
+	<script type="text/javascript" th:src="@{/js/jquery.custom-countdown.min.js}"></script>
+	<!-- Owl Carousel -->
+	<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+	<!-- Main -->
+	<script type="text/javascript" th:src="@{/js/app.js}"></script>
+	<!-- add to cart -->
+	<th:block th:insert="fragments/auths :: auths"></th:block>
+
+	<script type="text/javascript" th:src="@{/js/cartdetail.js}"></script>
+	<script type="text/javascript" th:src="@{/js/cart.js}"></script>
+
+
+</body>
+
+</html>
